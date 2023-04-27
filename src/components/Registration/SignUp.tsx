@@ -15,16 +15,27 @@ import Avatar from './Avatar';
 import Title from '../Title';
 import {title} from '../../constants/libraryTitle';
 import {colorList} from '../../constants/colors';
+import {validateEmail, validatePassword} from '../../utils/validations';
 
 const SignUp = () => {
-  const {submitHandler, inputData, isConditionsDone, photo, setPhoto, error} =
-    useAuth();
-
+  const {
+    submitHandler,
+    inputData,
+    isConditionsDone,
+    photo,
+    setPhoto,
+    error,
+    email,
+    password,
+  } = useAuth();
+  const disabled =
+    isConditionsDone && !validatePassword(email) && !validateEmail(password);
+  const behavior = Platform.OS === 'ios' ? 'padding' : 'height';
   return (
     <View style={styles.container}>
       <ScrollView>
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          behavior={behavior}
           style={styles.keyboardContainer}>
           <View>
             <Title title={title.PROFILE_CREATION} />
@@ -49,7 +60,7 @@ const SignUp = () => {
         <CustomButton
           btnName="Submit"
           func={submitHandler}
-          disabled={isConditionsDone}
+          disabled={disabled}
         />
       </View>
     </View>

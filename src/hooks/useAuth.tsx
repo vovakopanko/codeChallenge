@@ -23,7 +23,7 @@ export const useAuth = () => {
   const [error, setError] = useState('');
   const navigation = useNavigation<StackNavigationProp<MainStackParamList>>();
 
-  const isConditionsDone = email.length <= 5 || password.length <= 5;
+  const isConditionsDone = email.length <= 6 || password.length <= 6;
   const inputData: IData[] = [
     {
       id: 0,
@@ -73,6 +73,8 @@ export const useAuth = () => {
   };
 
   return {
+    email,
+    password,
     photo,
     setPhoto,
     submitHandler,

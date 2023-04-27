@@ -38,7 +38,7 @@ export const useSignIn = () => {
         navigation.navigate('Home', {email: email});
         setError('');
       } else {
-        setError('ERROR: Incorrect password or email');
+        setError('Incorrect password or email');
         setPassword('');
       }
     });
